@@ -20,13 +20,17 @@ function onInput(e) {
     refs.countryList.innerHTML = '';
     refs.countryInfo.innerHTML = '';
     name = e.target.value.trim();  
-    fetchCountries(name).then( 
-            countryname => {
-                if (countryname.length > 10) {
-                    Notify.info('Too many matches found. Please enter a more specific name.')
-                } else if(countryname.length >= 2) {
-                    countryname.forEach(element =>  refs.countryList.insertAdjacentHTML('beforeend', 
-                    `
+    fetchCountries(name)
+      .then(countryname => {
+        if (countryname.length > 10) {
+          Notify.info(
+            'Too many matches found. Please enter a more specific name.'
+          );
+        } else if (countryname.length >= 2) {
+          countryname.forEach(element =>
+            refs.countryList.insertAdjacentHTML(
+              'beforeend',
+              `
                     <li class="country-item">
                         <img 
                             class="country-item__flag" 
@@ -34,12 +38,13 @@ function onInput(e) {
                             alt="/"
                         />
                     <p class="country-name">${element.name}</p>
-                `)
-                        );
-                   
-                } else {
-                    countryname.forEach(element => refs.countryInfo.innerHTML = 
-                        `
+                `
+            )
+          );
+        } else {
+          countryname.forEach(
+            element =>
+              (refs.countryInfo.innerHTML = `
                             <img 
                                 class="country-info__flag" 
                                 src="${element.flags.svg}" 
@@ -49,21 +54,32 @@ function onInput(e) {
                             <ul class="country-info__list">
                                 <li class="country-info__item">
                                     <span class="country-info__tag">Capital:</span>
-                                    <p class="country-info__value">${element.capital}</p>
+                                    <p class="country-info__value">${
+                                      element.capital
+                                    }</p>
                                 </li>
                                 <li class="country-info__item">
                                     <span class="country-info__tag">Population:</span>
-                                    <p class="country-info__value">${element.population}</p>
+                                    <p class="country-info__value">${
+                                      element.population
+                                    }</p>
                                 </li>
                                 <li class="country-info__item">
                                     <span class="country-info__tag">Languages:</span>
-                                    <p class="country-info__value">${element.languages.map(lang => lang.name)}</p>
+                                    <p class="country-info__value">${element.languages.map(
+                                      lang => lang.name
+                                    )}</p>
                                 </li>
                             </ul>
-                        `);                   
-                }
-                console.log(...countryname);
-
-            });
+                        `)
+          );
+        }
+      })
+        .catch(error => {
+            Notify.failure('Oops, there is no country with that name');
+            refs.searchInput.value = '';
+      }
+        
+      );
 }
 
