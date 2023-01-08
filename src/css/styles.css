@@ -10,30 +10,50 @@ body {
   background-color: #fafafa;
   color: #212121;
   line-height: 1.5;
+  background-image: url(../img/world-outline-map.jpg);
+}
+
+.country-in-fire {
+  position: absolute;
+  top: 140px;
+  left: 950px;
+  width: 400px;
+  height: 80px;
+  background-image: url(../img/fire.svg);
+  background-size: contain;  
 }
 
 #search-box {
+  display: block;
+  margin: 150 auto;
   font: inherit;
   padding: 8px;
-  max-width: 320px;
+  width: 320px;
   margin-bottom: 16px;
+  border-radius: 10px;
+  border: 2px solid #212121;
 }
 
-.country-list{
+#search-box:focus {
+  border: 3px solid #212121;
+}
+
+.country-list {
   padding: 8px;
-  margin: 0;
 }
 .country-item {
   display: flex;
   list-style: none;
   gap: 10px;
-  justify-content: baseline;
+  justify-content: center;
   align-items: center;
+  font-size: 20px;
+  font-weight: 450;
 }
 .country-item__flag {
   text-align: center;
-  max-width: 50px;
-  max-height: 30px;
+  max-width: 60px;
+  max-height: 35px;
 }
 
 .country-info__flag {
