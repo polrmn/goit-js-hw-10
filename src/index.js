@@ -75,11 +75,9 @@ function onInput(e) {
           );
         }
       })
-        .catch(error => {
-            Notify.failure('Oops, there is no country with that name');
-            // refs.searchInput.value = '';
-      }
-        
+      .catch(error => {
+        Notify.failure('Oops, there is no country with that name');
+        }
       );
 }
 
